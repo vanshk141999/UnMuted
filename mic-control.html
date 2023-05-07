@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Microphone Control</title>
+    <style>
+      body {
+        padding: 1rem;
+      }
+      button {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        margin: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Microphone Control</h1>
+    <div>
+      <button id="muteBtn">Mute Microphone</button>
+      <button id="unmuteBtn">Unmute Microphone</button>
+    </div>
+    <script>
+      const { ipcRenderer } = require("electron");
+
+      const muteBtn = document.getElementById("muteBtn");
+      const unmuteBtn = document.getElementById("unmuteBtn");
+
+      muteBtn.addEventListener("click", () => {
+        ipcRenderer.send("mute-mic");
+      });
+
+      unmuteBtn.addEventListener("click", () => {
+        ipcRenderer.send("unmute-mic");
+      });
+    </script>
+  </body>
+</html>
